@@ -116,5 +116,38 @@
       "s-53.jpg"
     ],
     "pptx": "original.pptx"
+  },
+  {
+    "id": "20260929-0604-plc",
+    "title": "PLC順序控制期末報告－輸送帶檢貨系統",
+    "date": "2026-09-29",
+    "slides": [
+      "s-01.jpg",
+      "s-02.jpg",
+      "s-03.jpg",
+      "s-04.jpg",
+      "s-05.jpg",
+      "s-06.jpg",
+      "s-07.jpg",
+      "s-08.jpg",
+      "s-09.jpg",
+      "s-10.jpg",
+      "s-11.jpg",
+      "s-12.jpg",
+      "s-13.jpg",
+      "s-14.jpg"
+    ]
+  },
+  {
+    "id": "20260929-a4",
+    "title": "不負責任道路安全講座",
+    "date": "2026-09-29",
+    "slides": [
+      "s-1.jpg",
+      "s-2.jpg",
+      "s-3.jpg",
+      "s-4.jpg",
+      "s-5.jpg"
+    ]
   }
 ]
