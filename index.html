@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>簡報庫</title>
+<style>
+:root{--bg:#f6f6f4;--card:#fff;--fg:#1c1c1c;--mute:#6b6b6b;--line:#e3e3e0;--accent:#2f5bea}
+@media (prefers-color-scheme:dark){:root{--bg:#141414;--card:#1e1e1e;--fg:#eee;--mute:#9a9a9a;--line:#2c2c2c;--accent:#7c9bff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,"PingFang TC","Noto Sans TC",sans-serif}
+header{max-width:1100px;margin:0 auto;padding:32px 16px 8px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+h1{margin:0;font-size:26px;flex:1}
+input{padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font-size:15px;width:min(280px,100%)}
+main{max-width:1100px;margin:0 auto;padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.card img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#000;display:block}
+.meta{padding:12px 14px}
+.title{font-weight:600}
+.sub{color:var(--mute);font-size:13px}
+.empty{grid-column:1/-1;text-align:center;color:var(--mute);padding:60px 0}
+</style>
+</head>
+<body>
+<header><h1>簡報庫</h1><input id="q" type="search" placeholder="搜尋簡報…"></header>
+<main id="list"></main>
+<script>
+let decks=[];
+const list=document.getElementById('list');
+function render(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const items=decks.filter(d=>d.title.toLowerCase().includes(q));
+  list.innerHTML=items.length?items.map(d=>`
+    <a class="card" href="play.html?deck=${encodeURIComponent(d.id)}">
+      <img src="decks/${d.id}/${d.slides[0]}" loading="lazy" alt="">
+      <div class="meta"><div class="title"></div><div class="sub">${d.slides.length} 頁 · ${d.date||''}</div></div>
+    </a>`).join(''):'<div class="empty">還沒有簡報</div>';
+  list.querySelectorAll('.title').forEach((el,i)=>el.textContent=items[i].title);
+}
+document.getElementById('q').addEventListener('input',render);
+fetch('decks.json',{cache:'no-cache'}).then(r=>r.json()).then(d=>{decks=d.sort((a,b)=>(b.date||'').localeCompare(a.date||''));render()});
+</script>
+</body>
+</html>
