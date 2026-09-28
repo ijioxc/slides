@@ -23,6 +23,7 @@ html,body{margin:0;height:100%;background:#000;overflow:hidden;font:14px -apple-
   <span class="sp" id="count"></span>
   <button id="next">›</button>
   <button id="fs">全螢幕 (F)</button>
+  <a id="dl" style="display:none" download>下載 PPT ⬇</a>
 </div>
 <script>
 const id=new URLSearchParams(location.search).get('deck');
@@ -56,6 +57,12 @@ fetch('decks.json',{cache:'no-cache'}).then(r=>r.json()).then(all=>{
   deck=all.find(d=>d.id===id);
   if(!deck){count.textContent='找不到簡報';return}
   document.title=deck.title;
+  if(deck.pptx){
+    const dl=document.getElementById('dl');
+    dl.href=`decks/${deck.id}/${deck.pptx}`;
+    dl.download=`${deck.title}${deck.pptx.slice(deck.pptx.lastIndexOf('.'))}`;
+    dl.style.display='';
+  }
   show((parseInt(location.hash.slice(1))||1)-1);
 });
 </script>

@@ -35,7 +35,8 @@
       "s-29.jpg",
       "s-30.jpg",
       "s-31.jpg"
-    ]
+    ],
+    "pptx": "original.pptx"
   },
   {
     "id": "20260929-war-ledger-a",
@@ -52,7 +53,8 @@
       "s-08.jpg",
       "s-09.jpg",
       "s-10.jpg"
-    ]
+    ],
+    "pptx": "original.pptx"
   },
   {
     "id": "20260929-my-life",
@@ -112,6 +114,7 @@
       "s-51.jpg",
       "s-52.jpg",
       "s-53.jpg"
-    ]
+    ],
+    "pptx": "original.pptx"
   }
 ]

@@ -19,6 +19,8 @@ main{max-width:1100px;margin:0 auto;padding:16px;display:grid;grid-template-colu
 .meta{padding:12px 14px}
 .title{font-weight:600}
 .sub{color:var(--mute);font-size:13px}
+.dl{display:inline-block;margin-top:8px;font-size:12px;color:var(--accent);text-decoration:none}
+.dl:hover{text-decoration:underline}
 .empty{grid-column:1/-1;text-align:center;color:var(--mute);padding:60px 0}
 </style>
 </head>
@@ -34,7 +36,9 @@ function render(){
   list.innerHTML=items.length?items.map(d=>`
     <a class="card" href="play.html?deck=${encodeURIComponent(d.id)}">
       <img src="decks/${d.id}/${d.slides[0]}" loading="lazy" alt="">
-      <div class="meta"><div class="title"></div><div class="sub">${d.slides.length} 頁 · ${d.date||''}</div></div>
+      <div class="meta"><div class="title"></div><div class="sub">${d.slides.length} 頁 · ${d.date||''}</div>
+      ${d.pptx?`<a class="dl" href="decks/${d.id}/${d.pptx}" download="${d.title}${d.pptx.slice(d.pptx.lastIndexOf('.'))}" onclick="event.stopPropagation()">下載 PPT ⬇</a>`:''}
+      </div>
     </a>`).join(''):'<div class="empty">還沒有簡報</div>';
   list.querySelectorAll('.title').forEach((el,i)=>el.textContent=items[i].title);
 }
