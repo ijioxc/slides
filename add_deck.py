@@ -22,7 +22,7 @@ def add(pdf, title):
     out = ROOT / "decks" / deck_id
     if out.exists(): shutil.rmtree(out)
     out.mkdir(parents=True)
-    subprocess.run(["pdftoppm", "-jpeg", "-jpegopt", "quality=88", "-r", "150", str(pdf), str(out / "s")], check=True)
+    subprocess.run(["pdftoppm", "-jpeg", "-jpegopt", "quality=92", "-r", "200", str(pdf), str(out / "s")], check=True)
     slides = sorted(p.name for p in out.glob("s-*.jpg"))
     decks = [d for d in load() if d["id"] != deck_id]
     decks.append({"id": deck_id, "title": title or pdf.stem, "date": f"{datetime.date.today()}", "slides": slides})
